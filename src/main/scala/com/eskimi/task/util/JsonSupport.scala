@@ -1,8 +1,8 @@
 package com.eskimi.task.util
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import com.eskimi.task.actor._
-import spray.json.{ DefaultJsonProtocol, RootJsonFormat }
+import com.eskimi.task.entity._
+import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 object JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
   implicit val bannerFormat: RootJsonFormat[Banner] = jsonFormat4(Banner)

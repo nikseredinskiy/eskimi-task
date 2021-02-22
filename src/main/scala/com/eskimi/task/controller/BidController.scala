@@ -7,7 +7,7 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.{ Directives, Route }
 import akka.pattern.ask
 import akka.util.Timeout
-import com.eskimi.task.actor.{ BidRequest, BidResponse }
+import com.eskimi.task.entity.{ BidRequest, BidResponse }
 import com.eskimi.task.util.JsonSupport._
 
 import scala.concurrent.Future
@@ -15,7 +15,9 @@ import scala.concurrent.duration.FiniteDuration
 
 class BidController(bidRequestActor: ActorRef)(implicit actorSystem: ActorSystem) extends Directives {
 
-  private implicit val timeout: Timeout = Timeout(FiniteDuration(10, TimeUnit.SECONDS))
+  private implicit val timeout: Timeout = Timeout(
+    FiniteDuration(actorSystem.settings.config.getInt("eskimi-task.timeout-in-sec"), TimeUnit.SECONDS)
+  )
 
   def checkBidRoute: Route = {
     pathPrefix("check") {
