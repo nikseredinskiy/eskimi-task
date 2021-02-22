@@ -1,0 +1,22 @@
+.DS_Store
+.idea
+.bsp
+target
+logs
+log/
+out/
+project/project/
+project/src/
+
+.vscode
+.bloop
+.metals
+metals.sbt
+
+.ensime
+.ensime_cache
+ensime-langserver.log
+pc.stdout.log
+
+# sonarqube
+.scannerwork
